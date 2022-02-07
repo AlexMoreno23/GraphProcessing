@@ -54,7 +54,6 @@ class Graph {
 
 
         while (!stack.isEmpty()) {
-
             int u = stack.peek();
             stack.pop();
 
