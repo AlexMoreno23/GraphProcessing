@@ -5,42 +5,43 @@ package test_example.by.morunov;
  */
 class GraphProcessing {
 
-    static class ListNode {
-        int v;
-        int weight;
+    public void longPath(int[][] matrix) {
+        int[] result = matrix[0];
+        int column;
+        int row_ = 0;
+        int max = 0;
+        for (column = 0; column < matrix.length; column++) {
+            for (int row = 0; row < matrix.length; row++) {
+                int longPath = matrix[row][column] + max;
+                if ((row_ - row) <= Math.abs(1)) {
+                    System.out.println("initialVertex -> [" + row + "][" + column + "] = " + longPath);
+                }
+                if (matrix[row][column] > result[0]) {
+                    result[column] = matrix[row][column];
+                    row_ = row;
+                }
+            }
+            max += matrix[row_][column];
 
-        public ListNode(int v, int weight) {
-            this.v = v;
-            this.weight = weight;
         }
-
-        public int getV() {
-            return v;
-        }
-
-        public int getWeight() {
-            return weight;
-        }
-
     }
 
     public static void main(String[] args) {
 
-        Graph g = new Graph(6);
-        g.addEdge(0, 1, 2);
-        g.addEdge(0, 2, 3);
-        g.addEdge(1, 3, 6);
-        g.addEdge(1, 2, 4);
-        g.addEdge(2, 4, 4);
-        g.addEdge(2, 5, 8);
-        g.addEdge(2, 3, 7);
-        g.addEdge(3, 5, 1);
-        g.addEdge(3, 4, 2);
-        g.addEdge(4, 5, 9);
 
-        int s = 0;
-        System.out.print("Long distances from the original vertex " + s + " \n");
-        g.longestPath(s);
+        int[][] matrix = {
+                {1, 3, 3},
+                {2, 1, 4},
+                {6, 6, 4}
+        };
+
+        GraphProcessing gp = new GraphProcessing();
+
+
+        gp.longPath(matrix);
+
 
     }
+
+
 }
